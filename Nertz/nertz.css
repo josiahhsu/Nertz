@@ -3,5 +3,6 @@ body{
 }
 
 th, tr, input{
-    width: 10em;
+    width: 15em;
+    text-align: left;
 }
