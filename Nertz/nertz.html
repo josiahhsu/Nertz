@@ -87,7 +87,7 @@
                     remove.innerHTML = "Remove Last Score";
                     remove.onclick = function(){
                         let element = document.getElementById(rounds.id);
-                        if(element.firstChild)
+                        if(element.lastChild)
                         {
                             let x = Number(element.lastChild.value);
                             element.removeChild(element.lastChild);
