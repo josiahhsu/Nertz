@@ -53,6 +53,7 @@
 
                     let score = document.createElement("tr");
                     score.value = 0;
+                    score.round = 1;
                     score.innerHTML = "Score: " + score.value;
                     score.id = "score"+i;
                     document.getElementById(player.id).appendChild(score);
@@ -68,14 +69,13 @@
 
                     let add = document.createElement("button");
                     add.innerHTML = "Add Score";
-                    add.value = 1;
                     add.onclick = function(){
                         if(input.value != ''){
                             let x = Number(score.value) + Number(input.value);
                             score.value = x;
                             score.innerHTML = "Score: " + x;
                             let roundScore = document.createElement("tr");
-                            roundScore.innerHTML = `Round ${add.value++}: ${input.value}`;
+                            roundScore.innerHTML = `Round ${score.round++}: ${input.value}`;
                             roundScore.value = input.value;
                             document.getElementById(rounds.id).appendChild(roundScore);
                             input.value = '';
@@ -85,7 +85,6 @@
 
                     let remove = document.createElement("button");
                     remove.innerHTML = "Remove Last Score";
-                    remove.value = 1;
                     remove.onclick = function(){
                         let element = document.getElementById(rounds.id);
                         if(element.firstChild)
@@ -94,7 +93,7 @@
                             element.removeChild(element.lastChild);
                             score.value -= x;
                             score.innerHTML = "Score: " + score.value;
-                            add.value--;
+                            score.round--;
                         }
                     }
                     document.getElementById(player.id).insertBefore(remove, rounds);
