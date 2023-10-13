@@ -25,19 +25,27 @@
                     n.value = 9;
             }
         </script>
+        
+        <button id="startGame" onclick="startGame()">Start Game</button>
+        <button id="reset" disabled="true" onclick="reset()">Reset</button>
     </div>
 
     <div id="playerTable">
-        <button id="startGame" onclick="startGame()">Start Game</button>
 
         <table id="columns"></table>
         <script>
-            function startGame(){
-                document.getElementById("startGame").disabled = true;
-                let numPlayers = document.getElementById("numPlayers");
-                numPlayers.disabled = true
+            function disableInputs(disabled)
+            {
+                document.getElementById("startGame").disabled = disabled;
+                document.getElementById("reset").disabled = !disabled;
+                document.getElementById("numPlayers").disabled = disabled;
+            }
 
-                for(var i = 1; i <= numPlayers.value; i++){
+            function startGame(){
+                disableInputs(true);
+                let numPlayers = document.getElementById("numPlayers").value;
+
+                for(var i = 1; i <= numPlayers; i++){
                     let player = document.createElement("th");
                     player.innerHTML = `<input placeholder="Player ${i}"></input>`;
                     player.id = "player"+i;
@@ -91,6 +99,14 @@
                     }
                     document.getElementById(player.id).insertBefore(remove, rounds);
                 }
+            }
+
+            function reset()
+            {
+                if (!confirm("Reset game?"))
+                    return;
+                disableInputs(false);
+                document.getElementById("columns").innerHTML = "";
             }
         </script>
     </div>
