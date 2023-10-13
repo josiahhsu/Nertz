@@ -13,28 +13,16 @@
     <div id="home"><a href="../index.html">Back to Home</a></div>
     <h3>Nertz Score Tracker</h3>
     <div>
-        <span id="numPlayers">Player count: 3</span>
-        <button id="inc" onclick="increment()">+</button>
-        <button id="dec" onclick="decrement()">-</button>
+        <span>Player count:</span>
+        <input type="number" id="numPlayers" value=3 min=2 max=9 onchange="updateNumPlayers()"style="width: 2em"></input>
         <script>
-            let count = 3;
-            const numPlayers = document.getElementById("numPlayers");
-            const inc = document.getElementById("inc");
-            const dec = document.getElementById("dec");
-            function increment(){
-                if(++count == 10){
-                    inc.disabled = true;
-                }
-                dec.disabled = false;
-                numPlayers.innerHTML = "Player count: " + count;
-            }
-
-            function decrement(){
-                if(--count == 2){
-                    dec.disabled = true;
-                }
-                inc.disabled = false;
-                numPlayers.innerHTML = "Player count: " + count;
+            function updateNumPlayers()
+            {
+                let n = document.getElementById("numPlayers");
+                if (n.value < 2)
+                    n.value = 2;
+                else if (n.value > 9)
+                    n.value = 9;
             }
         </script>
     </div>
@@ -46,10 +34,10 @@
         <script>
             function startGame(){
                 document.getElementById("startGame").disabled = true;
-                inc.disabled = true;
-                dec.disabled = true;
+                let numPlayers = document.getElementById("numPlayers");
+                numPlayers.disabled = true
 
-                for(var i = 1; i <= count; i++){
+                for(var i = 1; i <= numPlayers.value; i++){
                     let player = document.createElement("th");
                     player.innerHTML = `<input placeholder="Player ${i}"></input>`;
                     player.id = "player"+i;
