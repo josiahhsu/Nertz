@@ -41,7 +41,14 @@
                 document.getElementById("numPlayers").disabled = disabled;
             }
 
-            function startGame(){
+            function adjustScore(id, x)
+            {
+                id.value += Number(x);
+                id.innerHTML = "Score: " + id.value;
+            }
+
+            function startGame()
+            {
                 disableInputs(true);
                 let numPlayers = document.getElementById("numPlayers").value;
 
@@ -69,10 +76,9 @@
                     let add = document.createElement("button");
                     add.innerHTML = "Add Score";
                     add.onclick = function(){
-                        if(input.value != ''){
-                            let x = Number(score.value) + Number(input.value);
-                            score.value = x;
-                            score.innerHTML = "Score: " + x;
+                        if(input.value != '')
+                        {
+                            adjustScore(score, input.value);
                             let round = document.getElementById(rounds.id);
                             let roundScore = document.createElement("tr");
                             roundScore.innerHTML = `Round ${round.childElementCount + 1}: ${input.value}`;
@@ -89,10 +95,8 @@
                         let element = document.getElementById(rounds.id);
                         if(element.lastChild)
                         {
-                            let x = Number(element.lastChild.value);
+                            adjustScore(score, -1 * element.lastChild.value);
                             element.removeChild(element.lastChild);
-                            score.value -= x;
-                            score.innerHTML = "Score: " + score.value;
                         }
                     }
                     document.getElementById(player.id).insertBefore(remove, rounds);
