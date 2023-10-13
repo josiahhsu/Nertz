@@ -53,7 +53,6 @@
 
                     let score = document.createElement("tr");
                     score.value = 0;
-                    score.round = 1;
                     score.innerHTML = "Score: " + score.value;
                     score.id = "score"+i;
                     document.getElementById(player.id).appendChild(score);
@@ -74,10 +73,11 @@
                             let x = Number(score.value) + Number(input.value);
                             score.value = x;
                             score.innerHTML = "Score: " + x;
+                            let round = document.getElementById(rounds.id);
                             let roundScore = document.createElement("tr");
-                            roundScore.innerHTML = `Round ${score.round++}: ${input.value}`;
+                            roundScore.innerHTML = `Round ${round.childElementCount + 1}: ${input.value}`;
                             roundScore.value = input.value;
-                            document.getElementById(rounds.id).appendChild(roundScore);
+                            round.appendChild(roundScore);
                             input.value = '';
                         }
                     }
@@ -93,7 +93,6 @@
                             element.removeChild(element.lastChild);
                             score.value -= x;
                             score.innerHTML = "Score: " + score.value;
-                            score.round--;
                         }
                     }
                     document.getElementById(player.id).insertBefore(remove, rounds);
