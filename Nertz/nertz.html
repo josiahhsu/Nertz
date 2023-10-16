@@ -12,6 +12,9 @@
 <body>
     <div id="home"><a href="../index.html">Back to Home</a></div>
     <h3>Nertz Score Tracker</h3>
+    <p>
+        A simple score tracker for Nertz.
+    </p>
     <div>
         <span>Player count:</span>
         <input type="number" id="numPlayers" value=3 min=2 max=9 onchange="updateNumPlayers()"style="width: 2em"></input>
@@ -90,7 +93,7 @@
                     document.getElementById(player.id).insertBefore(add, rounds);
 
                     let remove = document.createElement("button");
-                    remove.innerHTML = "Remove Last Score";
+                    remove.innerHTML = "Remove Score";
                     remove.onclick = function(){
                         let element = document.getElementById(rounds.id);
                         if(element.lastChild)
