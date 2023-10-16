@@ -1,6 +1,4 @@
-body{
-    background-color: lightgray;
-}
+@import url("../main.css");
 
 th, tr, input{
     width: 15em;
