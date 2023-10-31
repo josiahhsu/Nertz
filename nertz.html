@@ -78,7 +78,7 @@
 
                     let add = document.createElement("button");
                     add.innerHTML = "Add Score";
-                    add.onclick = function(){
+                    add.onclick = ()=>{
                         if(input.value != '')
                         {
                             adjustScore(score, input.value);
@@ -94,7 +94,7 @@
 
                     let remove = document.createElement("button");
                     remove.innerHTML = "Remove Score";
-                    remove.onclick = function(){
+                    remove.onclick = ()=>{
                         let element = document.getElementById(rounds.id);
                         if(element.lastChild)
                         {
